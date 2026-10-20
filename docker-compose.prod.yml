@@ -1,0 +1,86 @@
+# ==============================================================================
+# Empire Arena — Turnkey Single-Operator Production Compose Stack
+# ==============================================================================
+# Automatic HTTPS via Caddy + hardened Empire Arena backend.
+# Run from repository root:
+#   docker compose -f docker-compose.prod.yml --env-file .env.production up -d --build
+# ==============================================================================
+
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: empire-caddy-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN=${DOMAIN:?DOMAIN must be provided in environment, e.g. arena.example.com}
+      - ACME_EMAIL=${ACME_EMAIL:?ACME_EMAIL must be provided for Let's Encrypt TLS notices}
+      - UPSTREAM=empire-arena:8000
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      empire-arena:
+        condition: service_healthy
+
+  empire-arena:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: empire-arena:latest
+    container_name: empire-arena-app
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    # Port 8000 is internal only; Caddy proxies to it inside the Docker bridge network.
+    expose:
+      - "8000"
+    environment:
+      - ENVIRONMENT=production
+      # Secret Encryption Master Key (32-byte Fernet key or strong passphrase)
+      - VAULT_MASTER_KEY=${VAULT_MASTER_KEY:?VAULT_MASTER_KEY must be provided}
+      # Single-tenant access boundary key
+      - EMPIRE_API_KEY=${EMPIRE_API_KEY:?EMPIRE_API_KEY must be provided}
+      # Exact CORS allowed origin matching public domain
+      - CORS_ORIGINS=https://${DOMAIN}
+      # Strict HTTPS cookies
+      - COOKIE_SECURE=true
+      # Disable interactive docs in production by default
+      - ENABLE_DOCS=${ENABLE_DOCS:-false}
+      # Persistent paths
+      - DATABASE_PATH=/app/data/empire_arena.db
+      - BACKUP_DIR=/app/data/backups
+      # Ollama local inference connectivity
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+    volumes:
+      - empire_data:/app/data
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  empire_data:
+    driver: local
+  caddy_data:
+    driver: local
+  caddy_config:
+    driver: local

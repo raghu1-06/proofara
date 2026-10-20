@@ -1,0 +1,42 @@
+# ==========================================
+# Empire Arena — Docker Ignore Configuration
+# ==========================================
+
+# Secrets & Environment Configurations (NEVER copy into images)
+.env
+.env.*
+!.env.production.example
+.empire_vault.key
+*.key
+*.pem
+
+# SQLite Databases & Backups (Preserve volume separation)
+*.db
+*.db-wal
+*.db-shm
+*.sqlite3
+test_*.db
+backups/
+*.bak
+
+# Dependencies & Virtual Environments
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Git & System Artifacts
+.git/
+.gitignore
+.github/
+.system_generated/
+e2e/screenshots/
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

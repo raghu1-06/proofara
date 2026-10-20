@@ -1,0 +1,56 @@
+services:
+  empire-arena:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: empire-arena:latest
+    container_name: empire-arena-app
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      # Bind to loopback interface only — reverse proxy terminates TLS on 80/443
+      - "127.0.0.1:8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - ENVIRONMENT=production
+      # Secret Encryption Key (Must be set in production, 32-byte Fernet key or strong passphrase)
+      - VAULT_MASTER_KEY=${VAULT_MASTER_KEY:?VAULT_MASTER_KEY must be provided in environment}
+      # Single-tenant access boundary key (Protects mutating & administrative routes)
+      - EMPIRE_API_KEY=${EMPIRE_API_KEY:?EMPIRE_API_KEY must be provided in environment}
+      # Exact CORS allowed origins
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:8000,http://127.0.0.1:8000,https://empire-arena.example.com}
+      # Persistent SQLite database and backup locations
+      - DATABASE_PATH=/app/data/empire_arena.db
+      - BACKUP_DIR=/app/data/backups
+      # Ollama local inference host connectivity
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      # Cookie Secure flag (Set to true when behind TLS/HTTPS reverse proxy)
+      - COOKIE_SECURE=${COOKIE_SECURE:-false}
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 2048M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+    volumes:
+      # Persistent storage volume for SQLite DB and online backup snapshots
+      - empire_data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  empire_data:
+    driver: local

@@ -1,0 +1,48 @@
+# Dependencies
+node_modules
+.venv
+__pycache__
+*.pyc
+
+# Database files
+*.db
+*.sqlite3
+test_empire_arena.db
+test_*.db
+*.db-wal
+*.db-shm
+backups/
+*.bak
+
+# Secrets & Keys
+.empire_vault.key
+*.key
+*.pem
+deploy/test_certs/
+.env
+.env.*
+!.env.production.example
+persist_test_id.txt
+
+# Build outputs
+dist
+dist-ssr
+*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.system_generated
+
+# Editor & OS files
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

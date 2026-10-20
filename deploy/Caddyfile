@@ -1,0 +1,29 @@
+# ==========================================
+# Empire Arena — Caddy Reverse Proxy & Automatic TLS (Hardened)
+# ==========================================
+
+{$DOMAIN:empire-arena.example.com} {
+    # Automatic HTTPS (Let's Encrypt / ZeroSSL)
+    tls {$ACME_EMAIL:admin@example.com}
+
+    # Production Security Headers
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+        Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' http://localhost:11434 http://127.0.0.1:11434;"
+    }
+
+    # Compression
+    encode gzip zstd
+
+    # Reverse proxy to application upstream (defaults to loopback, or internal container name)
+    reverse_proxy {$UPSTREAM:127.0.0.1:8000} {
+        header_up Host {host}
+        header_up X-Real-IP {remote_host}
+        header_up X-Forwarded-For {remote_host}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
