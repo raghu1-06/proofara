@@ -68,18 +68,19 @@ export const Navbar: React.FC<NavbarProps> = ({ apiStatus = 'connected' }) => {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0d]/92 backdrop-blur-md">
-        <div className="max-w-[1160px] mx-auto px-5 min-h-[76px] flex items-center justify-between gap-6">
+      <header className="imperial-header sticky top-0 z-40 border-b border-white/10 bg-[#0b0b0d]/92 backdrop-blur-md">
+        <div className="imperial-rule" aria-hidden="true" />
+        <div className="max-w-[1160px] mx-auto px-5 min-h-[82px] flex items-center justify-between gap-6">
           {/* Brand */}
           <Link to="/" className="flex items-center gap-3 select-none group" aria-label="Empire Arena homepage">
-            <div className="w-[42px] h-[42px] rounded-xl flex items-center justify-center font-black text-xl text-[#17120a] bg-gradient-to-br from-[#f1d28b] to-[#a77c32] shadow-[0_0_25px_rgba(215,180,106,0.18)] border border-[#d7b46a] group-hover:scale-105 transition-transform">
-              E
+            <div className="imperial-seal group-hover:scale-105 transition-transform" aria-hidden="true">
+              <span>E</span>
             </div>
             <div>
-              <span className="block font-black text-[0.93rem] tracking-[0.14em] text-[#f3ead8]">
+              <span className="block font-serif text-[0.98rem] tracking-[0.18em] text-[#f3ead8]">
                 EMPIRE ARENA
               </span>
-              <span className="block text-[0.58rem] tracking-[0.18em] text-[#b9ad97] font-semibold">
+              <span className="block text-[0.56rem] tracking-[0.24em] text-[#b9ad97] font-semibold uppercase">
                 THE KINGDOM OF PROOF
               </span>
             </div>
@@ -99,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({ apiStatus = 'connected' }) => {
                 >
                   {link.label}
                   {active && (
-                    <span className="absolute left-0 right-0 -bottom-[27px] h-[2px] bg-[#d7b46a] shadow-[0_0_8px_#d7b46a]" />
+                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-[29px] w-8 h-px bg-[#d7b46a] shadow-[0_0_8px_#d7b46a]" />
                   )}
                 </Link>
               );

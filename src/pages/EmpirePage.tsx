@@ -58,7 +58,7 @@ export const EmpirePage: React.FC = () => {
           <img
             src="/empire-hero.jpg"
             alt="The Imperial Citadel of Empire Arena at twilight"
-            className="w-full h-full object-cover object-[center_35%] opacity-45 scale-[1.02] filter contrast-[1.08] saturate-[0.95]"
+            className="w-full h-full object-cover object-[center_35%] opacity-30 filter contrast-[1.02] saturate-[0.7]"
           />
           {/* Multi-layered cinematic obsidian & twilight vignettes */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/70 to-[#0B0B0D]/40" />
@@ -72,7 +72,7 @@ export const EmpirePage: React.FC = () => {
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#1A1815]/90 border border-[#D7B46A]/35 text-xs text-[#EADBB6] mb-6 backdrop-blur-md shadow-lg">
               <span className="w-2 h-2 rounded-full bg-[#9AC59B] shadow-[0_0_8px_#9AC59B]" />
               <span className="font-serif tracking-wider uppercase text-[11px] font-semibold">
-                Citadel Engine v1.0 · Live Multi-Model Citadel
+                A working record of model behavior
               </span>
               <span className="text-[#8E8678]">|</span>
               <span className="text-[11px] text-[#D7B46A] font-mono">
@@ -188,8 +188,12 @@ export const EmpirePage: React.FC = () => {
           {/* Chamber 1: The Lab */}
           <Link
             to="/lab"
-            className="empire-card p-6 min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
+            className="empire-card min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
           >
+            <div className="h-28 overflow-hidden border-b border-[#2B2720]">
+              <img src="/chamber-lab.png" alt="Ancient laboratory chamber" className="w-full h-full object-cover opacity-70 grayscale-[15%] transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="p-6 flex flex-col justify-between flex-1">
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center border border-[#D7B46A]/30 text-[#D7B46A] text-xl bg-[#1D1B16] shadow-inner group-hover:scale-110 transition-transform">
                 <FlaskConical className="w-6 h-6" />
@@ -211,13 +215,18 @@ export const EmpirePage: React.FC = () => {
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
+            </div>
           </Link>
 
           {/* Chamber 2: The Arena */}
           <Link
             to="/arena"
-            className="empire-card p-6 min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
+            className="empire-card min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
           >
+            <div className="h-28 overflow-hidden border-b border-[#2B2720]">
+              <img src="/chamber-arena.png" alt="Ancient arena chamber" className="w-full h-full object-cover opacity-70 grayscale-[15%] transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="p-6 flex flex-col justify-between flex-1">
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center border border-[#D7B46A]/30 text-[#D7B46A] text-xl bg-[#1D1B16] shadow-inner group-hover:scale-110 transition-transform">
                 <Swords className="w-6 h-6" />
@@ -239,13 +248,18 @@ export const EmpirePage: React.FC = () => {
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
+            </div>
           </Link>
 
           {/* Chamber 3: The Archives */}
           <Link
             to="/archives"
-            className="empire-card p-6 min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
+            className="empire-card min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
           >
+            <div className="h-28 overflow-hidden border-b border-[#2B2720]">
+              <img src="/chamber-archives.png" alt="Ancient archives chamber" className="w-full h-full object-cover opacity-70 grayscale-[15%] transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="p-6 flex flex-col justify-between flex-1">
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center border border-[#D7B46A]/30 text-[#D7B46A] text-xl bg-[#1D1B16] shadow-inner group-hover:scale-110 transition-transform">
                 <Database className="w-6 h-6" />
@@ -267,13 +281,18 @@ export const EmpirePage: React.FC = () => {
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
+            </div>
           </Link>
 
           {/* Chamber 4: The Oracle */}
           <Link
             to="/oracle"
-            className="empire-card p-6 min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
+            className="empire-card min-h-[290px] flex flex-col justify-between group relative overflow-hidden bg-gradient-to-b from-[#181615] to-[#100F12] border border-[#2B2720] hover:border-[#D7B46A]/60"
           >
+            <div className="h-28 overflow-hidden border-b border-[#2B2720]">
+              <img src="/chamber-oracle.png" alt="Ancient oracle chamber" className="w-full h-full object-cover opacity-70 grayscale-[15%] transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="p-6 flex flex-col justify-between flex-1">
             <div className="flex items-center justify-between">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center border border-[#D7B46A]/30 text-[#D7B46A] text-xl bg-[#1D1B16] shadow-inner group-hover:scale-110 transition-transform">
                 <Sparkles className="w-6 h-6" />
@@ -294,6 +313,7 @@ export const EmpirePage: React.FC = () => {
                 <span>Consult The Oracle</span>
                 <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
+            </div>
             </div>
           </Link>
         </div>
