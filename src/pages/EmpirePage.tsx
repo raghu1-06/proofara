@@ -58,7 +58,7 @@ export const EmpirePage: React.FC = () => {
           <img
             src="/empire-hero.jpg"
             alt="The Imperial Citadel of Empire Arena at twilight"
-            className="w-full h-full object-cover object-[center_35%] opacity-45 scale-[1.02] filter contrast-[1.08] saturate-[0.95]"
+            className="w-full h-full object-cover object-[center_35%] opacity-30 filter contrast-[1.02] saturate-[0.7]"
           />
           {/* Multi-layered cinematic obsidian & twilight vignettes */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0D] via-[#0B0B0D]/70 to-[#0B0B0D]/40" />
@@ -72,7 +72,7 @@ export const EmpirePage: React.FC = () => {
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#1A1815]/90 border border-[#D7B46A]/35 text-xs text-[#EADBB6] mb-6 backdrop-blur-md shadow-lg">
               <span className="w-2 h-2 rounded-full bg-[#9AC59B] shadow-[0_0_8px_#9AC59B]" />
               <span className="font-serif tracking-wider uppercase text-[11px] font-semibold">
-                Citadel Engine v1.0 · Live Multi-Model Citadel
+                A working record of model behavior
               </span>
               <span className="text-[#8E8678]">|</span>
               <span className="text-[11px] text-[#D7B46A] font-mono">

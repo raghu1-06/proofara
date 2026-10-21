@@ -2,15 +2,15 @@
 
 @layer base {
   :root {
-    --bg: #0b0b0d;
-    --panel: #151416;
-    --panel2: #1c1918;
-    --gold: #d7b46a;
-    --gold-light: #f2d99b;
-    --text: #f3ead8;
-    --muted: #b8ad9b;
-    --faint: #82796e;
-    --line: rgba(215, 180, 106, 0.22);
+    --bg: #11100d;
+    --panel: #191713;
+    --panel2: #211d17;
+    --gold: #c9a75b;
+    --gold-light: #e5cc91;
+    --text: #eee4d1;
+    --muted: #b2a58e;
+    --faint: #766d60;
+    --line: rgba(201, 167, 91, 0.24);
     --green: #9ac59b;
     --red: #d98d82;
     --blue: #8eb8d5;
@@ -112,23 +112,25 @@
 }
 
 /* Atmospheric Panels */
-.empire-panel {
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-radius: 14px;
+  .empire-panel {
+  border: 1px solid rgba(201, 167, 91, 0.2);
+  border-radius: 3px;
   overflow: hidden;
-  background: linear-gradient(145deg, rgba(27, 25, 24, 0.96), rgba(17, 17, 19, 0.96));
+  background: #191713;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
 }
 
 .empire-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  background: linear-gradient(145deg, #1c1918, #111113 75%);
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  border: 1px solid rgba(201, 167, 91, 0.18);
+  border-radius: 3px;
+  background: #191713;
+  transition: background 0.25s ease, border-color 0.25s ease;
 }
 
 .empire-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(215, 180, 106, 0.45);
+  transform: none;
+  background: #211d17;
+  border-color: rgba(201, 167, 91, 0.6);
 }
 
 /* Buttons */
@@ -137,13 +139,15 @@
   background: linear-gradient(110deg, #f0d18a, #c49a4b);
   box-shadow: 0 6px 25px rgba(196, 154, 75, 0.18);
   font-weight: 800;
-  border: 1px solid transparent;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #c9a75b;
+  border-radius: 2px;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
 .btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 30px rgba(196, 154, 75, 0.28);
+  transform: none;
+  background: #e5cc91;
+  box-shadow: 0 6px 20px rgba(196, 154, 75, 0.18);
 }
 
 .btn-secondary {
