@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="border-t border-white/8 py-7 text-xs text-[#8e8476] bg-[#08080a]">
+    <footer className="border-t border-white/8 py-9 text-xs text-[#8e8476] bg-[#08080a]">
+      <div className="imperial-rule max-w-[1160px] mx-auto mb-7 px-5" aria-hidden="true" />
       <div className="max-w-[1160px] mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="font-black tracking-[0.14em] text-[#d8c49a]">EMPIRE ARENA</span>
+          <span className="font-serif tracking-[0.18em] text-[#d8c49a]">EMPIRE ARENA</span>
           <span>·</span>
           <span>The Kingdom of Proof</span>
         </div>
